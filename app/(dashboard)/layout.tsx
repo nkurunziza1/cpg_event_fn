@@ -28,8 +28,8 @@ export default function DashboardLayout({
           <main className="flex-1 min-w-0">
             {" "}
             {/* Add min-w-0 to prevent overflow */}
-            <div className="flex min-h-screen flex-col">
-              <div className="sticky top-0 z-10 border-b bg-background px-4 py-3">
+            <div className="flex min-h-screen flex-col bg-white">
+              <div className="sticky top-0 z-10 border-b bg-white px-4 py-3">
                 <SidebarTrigger className="bg-red-600 hover:bg-red-700 transition-all duration-300 text-white" />
               </div>
               <div className="flex-1 space-y-4 p-8 pt-6 w-full">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import { Plus, Edit, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Edit, Trash2, ChevronLeft, ChevronRight, Tag, CheckCircle, Calendar, Clock, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -447,7 +447,7 @@ export default function EventsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white border-2 border-black rounded-lg p-4">
+      <div className="bg-white rounded-lg p-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <Label htmlFor="statusFilter">Filter by Status</Label>
@@ -455,7 +455,7 @@ export default function EventsPage() {
               id="statusFilter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 border-2 border-black rounded-md"
+              className="w-full px-3 py-2 rounded-md"
             >
               <option value="all">Event Status</option>
               <option value="pending">Pending</option>
@@ -472,7 +472,6 @@ export default function EventsPage() {
               value={titleFilter}
               onChange={(e) => setTitleFilter(e.target.value)}
               placeholder="Search by title..."
-              className="border-2 border-black"
             />
           </div>
           <div>
@@ -482,7 +481,6 @@ export default function EventsPage() {
               type="date"
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="border-2 border-black"
             />
           </div>
           <div className="flex items-end">
@@ -493,7 +491,7 @@ export default function EventsPage() {
                 setTitleFilter("");
                 setDateFilter("");
               }}
-              className="w-full border-2 border-black font-semibold"
+              className="w-full font-semibold"
             >
               Clear Filters
             </Button>
@@ -508,100 +506,132 @@ export default function EventsPage() {
         </div>
       ) : (
         <>
-          <div className="bg-white border-2 border-black rounded-lg overflow-hidden">
+          <div className="bg-white  shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-black">
-                <thead className="bg-red-600">
+              <table className="min-w-full">
+                <thead className="bg-gray-100">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Title
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <div className="flex items-center gap-2">
+                        <Tag className="w-4 h-4" />
+                        Title
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Category
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <div className="flex items-center gap-2">
+                        <Tag className="w-4 h-4" />
+                        Category
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Status
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4" />
+                        Status
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Start Date
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[180px] whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        Start Date
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      End Date
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[180px] whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" />
+                        End Date
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Location
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[200px] whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" />
+                        Location
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white border-r border-white">
-                      Max Participants
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[150px] whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        Max Participants
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
-                      Actions
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        Actions
+                      </div>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-black">
+                <tbody>
                   {paginatedEvents.length === 0 ? (
                     <tr>
                       <td
                         colSpan={8}
-                        className="px-6 py-4 text-center text-gray-500"
+                        className="px-6 py-4 text-center text-gray-500 bg-white"
                       >
                         No events found matching your filters.
                       </td>
                     </tr>
                   ) : (
-                    paginatedEvents.map((event) => (
-                      <tr key={event._id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm font-medium text-black">
+                    paginatedEvents.map((event, index) => (
+                      <tr
+                        key={event._id}
+                        className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          } hover:bg-gray-100 transition-colors`}
+                      >
+                        <td className="px-6 py-4">
+                          <div className="text-sm font-semibold text-black">
                             {event.title}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm text-black capitalize">
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-700 capitalize">
                             {event.eventCategory}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
+                        <td className="px-6 py-4">
                           <span
-                            className={`px-2 py-1 text-xs font-semibold rounded capitalize ${
-                              event.status === "active"
-                                ? "bg-green-100 text-green-800"
-                                : event.status === "completed"
+                            className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full capitalize ${event.status === "active"
+                              ? "bg-green-100 text-green-800"
+                              : event.status === "completed"
                                 ? "bg-blue-100 text-blue-800"
                                 : event.status === "cancelled"
-                                ? "bg-gray-100 text-gray-800"
-                                : event.status === "upcoming"
-                                ? "bg-yellow-100 text-yellow-800"
-                                : "bg-red-100 text-red-800"
-                            }`}
+                                  ? "bg-gray-100 text-gray-800"
+                                  : event.status === "upcoming"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "bg-red-100 text-red-800"
+                              }`}
                           >
                             {event.status}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm text-black">
-                            {formatDate(event.startingDate)}
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-700">
+                            <div className="font-medium">
+                              {formatDate(event.startingDate)}
+                            </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm text-black">
-                            {formatDate(event.endingDate)}
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-700">
+                            <div className="font-medium">
+                              {formatDate(event.endingDate)}
+                            </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm text-black">
-                            {event.location}
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center gap-1.5 text-sm text-gray-700">
+                            <MapPin className="w-3.5 h-3.5 text-red-600 flex-shrink-0" />
+                            <span>{event.location}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border-r border-black">
-                          <div className="text-sm text-black">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-700">
                             {event.maxParticipants
                               ? event.maxParticipants
                               : "Unlimited"}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <td className="px-6 py-4">
                           <div className="flex space-x-2">
                             <Button
                               size="sm"
@@ -609,7 +639,7 @@ export default function EventsPage() {
                               disabled={
                                 deletingId === event._id || isSubmitting
                               }
-                              className="bg-black text-white hover:bg-gray-800 font-medium"
+                              className="bg-red-600 hover:bg-red-700 text-white font-medium"
                             >
                               <Edit className="h-4 w-4" />
                             </Button>
@@ -639,8 +669,8 @@ export default function EventsPage() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="bg-white px-6 py-4 border-t-2 border-black flex items-center justify-between">
-                <div className="text-sm text-black">
+              <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
+                <div className="text-sm text-gray-700 font-semibold">
                   Showing {startIndex + 1} to{" "}
                   {Math.min(endIndex, filteredEvents.length)} of{" "}
                   {filteredEvents.length} events
@@ -658,7 +688,7 @@ export default function EventsPage() {
                     <ChevronLeft className="h-4 w-4" />
                     Previous
                   </Button>
-                  <div className="text-sm text-black px-4">
+                  <div className="text-sm text-gray-700 px-4 font-semibold">
                     Page {currentPage} of {totalPages}
                   </div>
                   <Button

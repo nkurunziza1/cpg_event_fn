@@ -19,10 +19,10 @@ export default function LandingLayout({
   return (
     <html lang="en">
       <head></head>
-      <body>{children}</body>
-      <div>
+      <body>
+        {children}
         <Toaster />
-      </div>
+      </body>
     </html>
   );
 }

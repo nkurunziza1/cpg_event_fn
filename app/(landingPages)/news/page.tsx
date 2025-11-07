@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { newsApi } from "../lib/api-client";
+import { newsApi } from "../../lib/api-client";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
@@ -69,7 +69,7 @@ export default function NewsPage() {
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-black mb-8 text-center">CPG News</h1>
-        
+
         {news.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-600 text-lg">No news available at the moment.</p>
@@ -77,12 +77,12 @@ export default function NewsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item) => (
-              <Link 
+              <Link
                 key={item._id}
                 href={`/news/${item._id}`}
                 className="block"
               >
-                <div className="bg-white border-2 border-black rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer h-full flex flex-col">
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer h-full flex flex-col">
                   {item.image && (
                     <div className="relative w-full h-48">
                       <img

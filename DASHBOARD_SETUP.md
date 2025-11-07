@@ -70,7 +70,7 @@ NODE_ENV=development
 
 ## Dashboard Pages
 
-- `/dashboard/stats` - Overview and statistics
+- `/dashboard/news` - Overview and statistics
 - `/dashboard/articles` - News/Articles management
 - `/dashboard/blogs` - Blog management
 - `/dashboard/projects` - Project management

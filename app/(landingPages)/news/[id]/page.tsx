@@ -69,7 +69,7 @@ export default function SingleNewsPage() {
           <p className="text-black text-xl mb-4">News not found</p>
           <Link
             href="/news"
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded border-2 border-black"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Back to News
           </Link>
@@ -91,7 +91,7 @@ export default function SingleNewsPage() {
         </Link>
 
         {/* News Content */}
-        <article className="bg-white border-2 border-black rounded-lg overflow-hidden shadow-lg">
+        <article className="bg-white rounded-lg overflow-hidden shadow-lg">
           {news.image && (
             <div className="relative w-full h-96">
               <img
@@ -101,16 +101,16 @@ export default function SingleNewsPage() {
               />
             </div>
           )}
-          
+
           <div className="p-8">
             <h1 className="text-4xl font-bold text-black mb-4">{news.title}</h1>
-            
+
             <div className="flex items-center gap-2 text-gray-600 mb-6">
               <Calendar className="h-5 w-5" />
               <span className="text-sm">{formatDate(news.createdAt)}</span>
             </div>
 
-            <div 
+            <div
               className="prose prose-lg max-w-none text-black prose-headings:text-black prose-p:text-black prose-strong:text-black prose-a:text-red-600"
               dangerouslySetInnerHTML={{ __html: news.description }}
               style={{
@@ -124,4 +124,3 @@ export default function SingleNewsPage() {
     </div>
   );
 }
-

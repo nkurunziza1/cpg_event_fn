@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b-2 border-black">
+    <nav className="bg-white ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center">

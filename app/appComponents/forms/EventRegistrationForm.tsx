@@ -159,14 +159,14 @@ export default function EventRegistrationForm({
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded border-2 border-black disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Registering..." : "Register"}
             </button>
             <button
               type="button"
               onClick={onCancel}
-              className="flex-1 bg-white hover:bg-gray-100 text-black font-bold py-2 px-4 rounded border-2 border-black"
+              className="flex-1 bg-white hover:bg-gray-100 text-black font-bold py-2 px-4 rounded"
             >
               Cancel
             </button>

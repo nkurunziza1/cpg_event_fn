@@ -283,19 +283,19 @@ export default function Home() {
                           Status
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[180px] whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4" />
                           Start Date
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[180px] whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4" />
                           End Date
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 min-w-[200px] whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <MapPin className="w-4 h-4" />
                           Location
@@ -313,9 +313,8 @@ export default function Home() {
                     {displayedEvents.map((event, index) => (
                       <tr
                         key={event._id}
-                        className={`${
-                          index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        } hover:bg-gray-100 transition-colors`}
+                        className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          } hover:bg-gray-100 transition-colors`}
                       >
                         <td className="px-6 py-4">
                           <div className="text-sm font-bold text-gray-700">
@@ -342,7 +341,7 @@ export default function Home() {
                             {event.status}
                           </span>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-700">
                             <div className="font-medium">
                               {formatDate(event.startingDate)}
@@ -352,7 +351,7 @@ export default function Home() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-700">
                             <div className="font-medium">
                               {formatDate(event.endingDate)}
@@ -362,13 +361,13 @@ export default function Home() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center gap-1.5 text-sm text-gray-700">
-                            <MapPin className="w-3.5 h-3.5 text-red-600" />
-                            {event.location}
+                            <MapPin className="w-3.5 h-3.5 text-red-600 flex-shrink-0" />
+                            <span>{event.location}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 w-full">
                           <Link
                             href={`/events/${event._id}`}
                             className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-all hover:shadow-lg"
@@ -395,8 +394,8 @@ export default function Home() {
                     onClick={handleLoadMore}
                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all hover:shadow-lg flex items-center gap-2"
                   >
-                    <Plus className="w-5 h-5" />
-                    Load More Events
+
+                    More Events
                   </button>
                 </div>
               )}
@@ -440,7 +439,7 @@ export default function Home() {
                   } catch (error: any) {
                     toast.error(
                       error.response?.data?.message ||
-                        "Failed to subscribe. Please try again."
+                      "Failed to subscribe. Please try again."
                     );
                   } finally {
                     setIsSubscribing(false);

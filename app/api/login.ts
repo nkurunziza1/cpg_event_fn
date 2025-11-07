@@ -18,7 +18,7 @@ export const handleLogin = async (data: any, setLoading: any) => {
     });
     toast.success("Login successful");
     if (user.role === "superAdmin") {
-      window.location.href = "/dashboard/stats";
+      window.location.href = "/dashboard/news";
     } else {
       window.location.href = "/";
     }
